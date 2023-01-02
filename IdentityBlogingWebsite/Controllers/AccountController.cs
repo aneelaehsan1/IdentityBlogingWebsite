@@ -151,7 +151,11 @@ namespace IdentityBlogingWebsite.Controllers
             }
             return View(resetPasswordViewModel);
         }
-
+        [HttpGet]
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -184,11 +188,8 @@ namespace IdentityBlogingWebsite.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult ResetPasswordConfirmation()
-        {
-            return View();
-        }
+
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]

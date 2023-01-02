@@ -18,6 +18,10 @@ namespace IdentityBlogingWebsite.Controllers
             return View();
         }
 
+        public IActionResult Post()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
