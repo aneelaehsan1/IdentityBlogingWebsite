@@ -13,6 +13,7 @@ namespace IdentityBlogingWebsite.Data
         }
 
         public DbSet<Post> Tbl_Post { get; set; }
-        public DbSet<Profile> Tbl_Profile { get; set; }
+        //public DbSet<Profile> Tbl_Profile { get; set; }
+       
     }
 }

@@ -1,12 +1,14 @@
 ﻿using IdentityBlogingWebsite.Data;
 using IdentityBlogingWebsite.Models;
 using IdentityBlogingWebsite.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IdentityBlogingWebsite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -18,6 +20,7 @@ namespace IdentityBlogingWebsite.Controllers
         }
         public IActionResult Index()
         {
+            _db.Tbl_Post.ToList();
             var userList = _db.Users.ToList();
             var roleList = _db.UserRoles.ToList();
             var roles = _db.Roles.ToList();
@@ -108,6 +111,8 @@ namespace IdentityBlogingWebsite.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+
         //[HttpGet]
         //public async Task<IActionResult> ManageClaims(string userId)
         //{
@@ -141,5 +146,5 @@ namespace IdentityBlogingWebsite.Controllers
         //    return View(model);
         //}
     }
-    
+
 }

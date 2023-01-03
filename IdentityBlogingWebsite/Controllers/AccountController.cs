@@ -39,20 +39,20 @@ namespace IdentityBlogingWebsite.Controllers
                 await _roleManager.CreateAsync(new IdentityRole("User"));
             }
 
-            List<SelectListItem> listItems = new List<SelectListItem>();
-            listItems.Add(new SelectListItem()
-            {
-                Value = "Admin",
-                Text = "Admin"
-            });
-            listItems.Add(new SelectListItem()
-            {
-                Value = "User",
-                Text = "User"
-            });
+            //List<SelectListItem> listItems = new List<SelectListItem>();
+            //listItems.Add(new SelectListItem()
+            //{
+            //    Value = "Admin",
+            //    Text = "Admin"
+            //});
+            //listItems.Add(new SelectListItem()
+            //{
+            //    Value = "User",
+            //    Text = "User"
+            //});
 
             RegisterViewModel registerViewModel = new RegisterViewModel();
-            registerViewModel.RoleList = listItems;
+            //registerViewModel.RoleList = listItems;
             registerViewModel.ReturnUrl = returnUrl;
             return View(registerViewModel);
         }
@@ -68,15 +68,15 @@ namespace IdentityBlogingWebsite.Controllers
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
-                    if (registerViewModel.RoleSelected != null && registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "Admin")
-                    {
-                        await _userManager.AddToRoleAsync(user, "Admin");
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, "User");
-                    }
-
+                    //if (registerViewModel.RoleSelected != null && registerViewModel.RoleSelected.Length > 0 && registerViewModel.RoleSelected == "Admin")
+                    //{
+                    //    await _userManager.AddToRoleAsync(user, "Admin");
+                    //}
+                    //else
+                    //{
+                    //    await _userManager.AddToRoleAsync(user, "User");
+                    //}
+                    await _userManager.AddToRoleAsync(user, "User");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
@@ -166,7 +166,7 @@ namespace IdentityBlogingWebsite.Controllers
                 var result = await _signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Post", "Home");
                 }
 
                 if (result.IsLockedOut)
@@ -196,7 +196,7 @@ namespace IdentityBlogingWebsite.Controllers
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Post", "Home");
         }
 
     }

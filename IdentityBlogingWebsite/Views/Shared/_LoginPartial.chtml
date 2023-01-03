@@ -1,0 +1,6 @@
+﻿namespace IdentityBlogingWebsite.Views.Shared
+{
+    public class _LoginPartial
+    {
+    }
+}

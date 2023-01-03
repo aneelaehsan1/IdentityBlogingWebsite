@@ -18,15 +18,20 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ISendGridEmail, SendGridEmail>();
 
+
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration.GetSection("SendGrid"));
 
 builder.Services.Configure<IdentityOptions>(opt =>
 {
     opt.Password.RequiredLength = 5;
-    opt.Password.RequireLowercase= true;
+    opt.Password.RequireLowercase= false;
     opt.Lockout.DefaultLockoutTimeSpan= TimeSpan.FromSeconds(10);
     opt.Lockout.MaxFailedAccessAttempts = 5;
     //opt.SignIn.RequireConfirmedAccount = true;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredUniqueChars = 0;
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireUppercase = false;
 });
 
 var app = builder.Build();
@@ -45,6 +50,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Post}/{id?}");
 
 app.Run();
