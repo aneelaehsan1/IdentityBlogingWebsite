@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+.nav-bar{
+    background-color : aqua;
+    font-family :sans-serif;
+    font-size :large
+}
