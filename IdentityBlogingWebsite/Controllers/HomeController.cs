@@ -20,6 +20,7 @@ namespace IdentityBlogingWebsite.Controllers
         public IActionResult Post()
         {
             IEnumerable<Post> myPost = _context.Tbl_Post;
+
             return View(myPost);
             //SharedLayOutData();
             // IEnumerable<Post> myPost = tdb.Tbl_Post;

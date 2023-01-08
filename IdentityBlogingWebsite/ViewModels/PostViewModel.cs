@@ -1,20 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using IdentityBlogingWebsite.Models;
 
-namespace IdentityBlogingWebsite.Models
+namespace IdentityBlogingWebsite.ViewModels
 {
-    public class Post
+    public class PostViewModel
     {
-        public int Id { get; set; }
-        [Required]
-        public string Title { get; set; }
         
-        [Required]
+      
+        public string Title { get; set; }
+
+        
         public string SubTitle { get; set; }
-        [Required] 
+       
         public string Content { get; set; }
 
         public DateTime Date { get; set; }
-        public string Image { get; set; } /*= "star.png";*/
+        public IFormFile Image { get; set; }
         public string? appUserid { get; set; }
         public AppUser? appUser { get; set; }
 
