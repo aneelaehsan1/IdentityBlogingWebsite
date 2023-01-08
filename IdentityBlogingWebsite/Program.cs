@@ -6,6 +6,7 @@ using IdentityBlogingWebsite.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileSystemGlobbing.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,9 +48,9 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+ 
 app.MapControllerRoute(
-    name: "default",
+name: "default",
     pattern: "{controller=Home}/{action=Post}/{id?}");
 
 app.Run();

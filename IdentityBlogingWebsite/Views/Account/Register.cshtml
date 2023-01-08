@@ -1,10 +1,14 @@
 ﻿@using IdentityBlogingWebsite.ViewModels
 @model RegisterViewModel
-
+<div class="container">
+    <div class="p-4">
 <h1 class="text-info">Register</h1>
+    </div>
 <form asp-controller="Account" asp-action="Register" method="post" role="form">
+        <div class="p-4">
     <h4>Create a new account</h4>
     <hr>
+        </div>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Email" class="col-md-2"></label>
@@ -43,9 +47,11 @@
         </div>
     </div>*@
     <br/>
+        <br />
     <div class="form-group">
         <div class="offset-md-2 col-md-10">
             <button type="submit" class="btn btn-success">Register</button>
         </div>
     </div>
 </form>
+</div>
