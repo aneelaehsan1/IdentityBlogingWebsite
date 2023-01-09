@@ -1,30 +1,32 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@*
-@{
-    IEnumerable<Post> myPost = ViewBag.Post;
-}
-*@
+@using IdentityBlogingWebsite.Models
+
+@model IEnumerable<Post>;
+
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Identity Bloging Website</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Bloging Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
-<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 "    id="nav">
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 " id="nav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Post">Bloging Website</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -39,18 +41,18 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                       
-                      
+
+
                         @if (User.IsInRole("Admin"))
                         {
-  
+
                             <li class="nav-item dropdown" id="nav">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Managment Dashboard
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-controller="User" asp-action="Index">Check Users</a>
-                                    <a class="dropdown-item"asp-controller="Role" asp-action="Index">check Users Roles</a>
+                                    <a class="dropdown-item" asp-controller="Role" asp-action="Index">check Users Roles</a>
                                     <div class="dropdown-divider"></div>
                                     @*<a class="dropdown-item" href="#">Something else here</a>*@
                                 </div>
@@ -58,9 +60,9 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                         }
                         @if (User.IsInRole("User"))
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="CreatePost">Create Post</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="CreatePost">Create Post</a>
+                            </li>
                         }
 
                         @if (SignInManager.IsSignedIn(User))
@@ -83,60 +85,59 @@ body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
-                            
+
                         }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
 </head>
 <body class="w3-light-grey">
 
-<!-- w3-content defines a container for fixed size centered content, 
-and is wrapped around the whole page content, except for the footer in this example -->
-<div class="w3-content" style="max-width:1400px">
+    <!-- w3-content defines a container for fixed size centered content,
+    and is wrapped around the whole page content, except for the footer in this example -->
+    <div class="w3-content" style="max-width:1400px">
 
-<!-- Header -->
+        <!-- Header -->
 
-</div>
+    </div>
 
-<!-- Grid -->
-<div class="w3-row">
-    @RenderBody()
+    <!-- Grid -->
+    <div class="w3-row">
+        @RenderBody()
+        <div class="w3-col l4">
+            <!-- About Card -->
+            @* <div class="w3-card w3-margin w3-margin-top">
+            <img src="/w3images/avatar_g.jpg" style="width:100%">
+            <div class="w3-container w3-white">
+            <h4><b>My Name</b></h4>
+            <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+            </div>
+            </div><hr>*@
 
-       <section>
-            <br />
-            <section class="">
-            <!-- Footer -->
-            <footer class="text-center text-white" style="background-color: #ffff">
-                <!-- Grid container -->
-                <div class="container p-4 pb-0">
-                    <!-- Section: CTA -->
-                    
-                    <!-- Section: CTA -->
+            <!-- Posts -->
+            <div class="w3-card w3-margin">
+                <div class="w3-container w3-padding">
+                    <h4>Popular Posts</h4>
                 </div>
-                <!-- Grid container -->
-                <!-- Copyright -->
-
-                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                
-                        @{
-                            DateTime now = DateTime.Today;
-                            now.ToString("yyyy");
-                        }©Copyright
-
-
-   
-                </div>
-                <!-- Copyright -->
-            </footer>
-            <!-- Footer -->
-        </section>
-        
-       </section>
+                <ul class="w3-ul w3-hoverable w3-white">
+                    @foreach (var item in Model)
+                    {
+                        <li class="w3-padding-16">
+                            <img src="/images/@item.Image" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+                            <span class="w3-large">@item.Title</span><br>
+                            <span>@item.SubTitle</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <hr>
 
 
+
+            <!-- END Introduction Menu -->
+        </div>
+    </div>
 </body>
 </html>

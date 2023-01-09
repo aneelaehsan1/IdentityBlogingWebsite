@@ -19,14 +19,38 @@ namespace IdentityBlogingWebsite.Controllers
 
         public IActionResult Post()
         {
-            IEnumerable<Post> myPost = _context.Tbl_Post;
+            SharedLayOutData();
+            //var myPost = _context.Tbl_Post;
 
+            //return View(myPost);
+
+            //IEnumerable<Post> myPost = tdb.Tbl_Post;
+            var myPost = _context.Tbl_Post.ToList();
             return View(myPost);
-            //SharedLayOutData();
-            // IEnumerable<Post> myPost = tdb.Tbl_Post;
-            //List<Post> post = _tdb.Tbl_Post.ToList();
-            //  return View(myPost);
- 
+
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult ReadPost(int Id)
+        {
+            SharedLayOutData();
+            var DetailedPost = _context.Tbl_Post.Find(Id);
+              return View(DetailedPost);
+            //    return View();
+            
+        }
+        public void SharedLayOutData()
+        {
+            ViewBag.Post = _context.Tbl_Post;
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         //public IActionResult Create()
@@ -115,16 +139,5 @@ namespace IdentityBlogingWebsite.Controllers
         //    TempData["ResultOk"] = "Data Deleted Successfully !";
         //    return RedirectToAction("Index");
         //}
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-      
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
