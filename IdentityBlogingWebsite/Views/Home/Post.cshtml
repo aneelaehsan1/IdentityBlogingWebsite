@@ -1,4 +1,4 @@
-﻿@using IdentityBlogingWebsite.Models
+﻿@*@using IdentityBlogingWebsite.Models
 
 @model IEnumerable<Post>
 @{
@@ -21,9 +21,9 @@
         <div class="w3-row">
 
             <!-- Blog entries -->
-            <div class="w3-col l8 s12">
+           @* <div class="w3-col l8 s12">
 
-                @foreach(var item in Model)
+              @foreach(var item in Model)
                 {
                 <!-- Blog entry -->
                 <div class="w3-card-4 w3-margin w3-white">
@@ -69,7 +69,7 @@
                 </div><hr>*@
 
                 <!-- Posts -->
-                <div class="w3-card w3-margin">
+                @*<div class="w3-card w3-margin">
                     <div class="w3-container w3-padding">
                         <h4>Popular Posts</h4>
                     </div>
@@ -96,15 +96,15 @@
                         </li>
                     </ul>
                 </div>
-                <hr>
+                <hr>*@
 
               
 
                 <!-- END Introduction Menu -->
-            </div>
+           @* </div>*@
 
             <!-- END GRID -->
-        </div>
+       @* </div>*@
     @*           <section>
             <br />
             <section class="">
@@ -136,4 +136,4 @@
         
        </section>*@
 
-</body>
+@*</body>*@

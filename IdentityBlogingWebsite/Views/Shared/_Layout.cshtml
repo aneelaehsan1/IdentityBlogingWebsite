@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using IdentityBlogingWebsite.Models
 
-@model IEnumerable<Post>;
+@*@model IEnumerable<Post>;*@
 
 
 @inject SignInManager<AppUser> SignInManager
@@ -40,6 +40,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllPosts">Blogs</a>
                         </li>
 
 
@@ -117,7 +120,7 @@
             </div><hr>*@
 
             <!-- Posts -->
-            <div class="w3-card w3-margin">
+           @* <div class="w3-card w3-margin">
                 <div class="w3-container w3-padding">
                     <h4>Popular Posts</h4>
                 </div>
@@ -132,7 +135,7 @@
                     }
                 </ul>
             </div>
-            <hr>
+            <hr>*@
 
 
 

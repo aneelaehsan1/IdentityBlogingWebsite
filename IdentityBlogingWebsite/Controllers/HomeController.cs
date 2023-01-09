@@ -19,6 +19,11 @@ namespace IdentityBlogingWebsite.Controllers
 
         public IActionResult Post()
         {
+            return View();
+        }
+
+        public IActionResult AllPosts()
+        {
             SharedLayOutData();
             //var myPost = _context.Tbl_Post;
 
