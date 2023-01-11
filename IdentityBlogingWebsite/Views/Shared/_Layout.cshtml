@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -25,10 +28,12 @@
             font-family: "Raleway", sans-serif
         }
     </style>
+</head>
+<body class=" d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 " id="nav">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow mb-3 " id="nav">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Post">Bloging Website</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="AllPosts">Bloging Website</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,19 +41,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Post">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllPosts">Blogs</a>
                         </li>
 
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
                         @if (User.IsInRole("Admin"))
                         {
-
                             <li class="nav-item dropdown" id="nav">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Managment Dashboard
@@ -71,7 +71,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Hello @UserManager.GetUserName(User)</a>
+                                <a class="nav-link" href="#">@UserManager.GetUserName(User)</a>
                             </li>
                             <li class="nav-item">
                                 <form id="logoutForm" method="post" class="form-inline" asp-controller="Account"
@@ -88,21 +88,18 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
-
                         }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-</head>
-<body class="w3-light-grey">
 
     <!-- w3-content defines a container for fixed size centered content,
     and is wrapped around the whole page content, except for the footer in this example -->
     <div class="w3-content" style="max-width:1400px">
 
-        <!-- Header -->
+
 
     </div>
 
@@ -110,37 +107,91 @@
     <div class="w3-row">
         @RenderBody()
         <div class="w3-col l4">
-            <!-- About Card -->
-            @* <div class="w3-card w3-margin w3-margin-top">
-            <img src="/w3images/avatar_g.jpg" style="width:100%">
-            <div class="w3-container w3-white">
-            <h4><b>My Name</b></h4>
-            <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
-            </div>
-            </div><hr>*@
-
-            <!-- Posts -->
-           @* <div class="w3-card w3-margin">
-                <div class="w3-container w3-padding">
-                    <h4>Popular Posts</h4>
-                </div>
-                <ul class="w3-ul w3-hoverable w3-white">
-                    @foreach (var item in Model)
-                    {
-                        <li class="w3-padding-16">
-                            <img src="/images/@item.Image" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">@item.Title</span><br>
-                            <span>@item.SubTitle</span>
-                        </li>
-                    }
-                </ul>
-            </div>
-            <hr>*@
-
-
-
-            <!-- END Introduction Menu -->
         </div>
     </div>
+    <div class="">
+
+        <footer class="text-white text-center text-lg-start bg-info mt-auto">
+            <!-- Grid container -->
+            <div class="p-3">
+                <!--Grid row-->
+                <div class="row mt-3">
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4">About company</h5>
+
+                        <p>
+                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            voluptatum deleniti atque corrupti.
+                        </p>
+
+                        <p>
+                            Blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas
+                            molestias.
+                        </p>
+
+                        <div class="mt-4">
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+
+
+                        <div class="form-outline form-white mb-4">
+                        </div>
+
+                        <ul class="fa-ul" style="margin-left: 1.65em;">
+                            <li class="mb-3">
+                                <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Karachi, NY 10012, Pakistan</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@example.com</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2"> 021 22895664</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fa-li"><i class="fas fa-print"></i></span><span class="ms-2"> 021 22895668</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase mb-4">Opening hours</h5>
+
+                        <table class="table text-center text-white">
+                            <tbody class="font-weight-normal">
+                                <tr>
+                                    <td>Mon - Thu:</td>
+                                    <td>8am - 9pm</td>
+                                </tr>
+                                <tr>
+                                    <td>Fri - Sat:</td>
+                                    <td>8am - 1am</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday:</td>
+                                    <td>9am - 10pm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2021 Copyright:
+                <p class="text-white">Blogging Website</p>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+    </div>
+    <!-- End of .container -->
 </body>
 </html>

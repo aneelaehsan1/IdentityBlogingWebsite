@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityBlogingWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230109044812_first")]
+    [Migration("20230111113355_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -102,8 +102,9 @@ namespace IdentityBlogingWebsite.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .IsRequired()

@@ -124,7 +124,7 @@ namespace IdentityBlogingWebsite.Controllers
 
 
         [HttpGet]
-        public IActionResult ResetPassword(string code=null)
+        public IActionResult ResetPassword(string code= null)
         {
             return code == null? View("Error") : View();
         }
@@ -166,7 +166,7 @@ namespace IdentityBlogingWebsite.Controllers
                 var result = await _signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, loginViewModel.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Post", "Home");
+                    return RedirectToAction("AllPosts", "Home");
                 }
 
                 if (result.IsLockedOut)
@@ -196,7 +196,7 @@ namespace IdentityBlogingWebsite.Controllers
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Post", "Home");
+            return RedirectToAction("AllPosts", "Home");
         }
 
     }

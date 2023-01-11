@@ -29,7 +29,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.Password.RequiredLength = 5;
     opt.Password.RequireLowercase= false;
     opt.Lockout.DefaultLockoutTimeSpan= TimeSpan.FromSeconds(10);
-    opt.Lockout.MaxFailedAccessAttempts = 5;
+    opt.Lockout.MaxFailedAccessAttempts = 10;
     //opt.SignIn.RequireConfirmedAccount = true;
     opt.Password.RequireNonAlphanumeric = false;
     opt.Password.RequiredUniqueChars = 0;
@@ -50,15 +50,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
- 
-
-
-
-
-
-
 app.MapControllerRoute(
 name: "default",
-    pattern: "{controller=Home}/{action=Post}/{id?}");
+    pattern: "{controller=Home}/{action=AllPosts}/{id?}");
 
 app.Run();

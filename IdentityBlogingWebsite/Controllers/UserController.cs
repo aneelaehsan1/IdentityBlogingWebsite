@@ -110,41 +110,6 @@ namespace IdentityBlogingWebsite.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-        
-
-        //[HttpGet]
-        //public async Task<IActionResult> ManageClaims(string userId)
-        //{
-        //    var user = await _user.FindByIdAsync(userId);
-
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var existingUserClaims = await _user.GetClaimsAsync(user);
-
-        //    var model = new UserClaimsViewModel()
-        //    {
-        //        UserId = userId
-        //    };
-
-        //    foreach (Claim claim in ClaimStore.claimsList)
-        //    {
-        //        UserClaim userClaim = new UserClaim
-        //        {
-        //            ClaimType = claim.Type
-        //        };
-        //        if (existingUserClaims.Any(c => c.Type == claim.Type))
-        //        {
-        //            userClaim.IsSelected = true;
-        //        }
-        //        model.Claims.Add(userClaim);
-        //    }
-
-        //    return View(model);
-        //}
     }
 
 }

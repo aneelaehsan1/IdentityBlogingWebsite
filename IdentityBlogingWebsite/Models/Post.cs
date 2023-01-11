@@ -13,8 +13,8 @@ namespace IdentityBlogingWebsite.Models
         [Required] 
         public string Content { get; set; }
 
-        public DateTime Date { get; set; }
-        public string Image { get; set; } /*= "star.png";*/
+        public String Date { get; set; }
+        public string Image { get; set; } 
         public string? appUserid { get; set; }
         public AppUser? appUser { get; set; }
 

@@ -49,7 +49,7 @@ namespace IdentityBlogingWebsite.Controllers
             post.appUserid = userId;
            //_context.Tbl_Post.Add(post);
            //_context.SaveChanges();
-            return RedirectToAction("Post","Home");
+            return RedirectToAction("AllPosts", "Home");
         }
     }
 }
